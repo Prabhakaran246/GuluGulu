@@ -1,0 +1,44 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+
+{%block title%}
+RKart | {{name}}
+{%endblock title%}
+
+{% block content %}
+
+
+
+<section class="bg-light">
+    <div class="container">
+    <div class="row">
+        <div class="col-12 p-3 my-3">
+             <h4>{{name}}</h4>
+             <hr style="border-color: grey;">
+        </div>
+        
+    {% for item in products %}
+        <div class="col-lg-3 col-sm-6 col-md-4">
+            <div class="card-group">
+            <div class="card my-3" id="card" style="height: 400px;">
+                <img src="{{item.product_image.url}}" class="card-image-top m-2 d-flex" alt="categories" height="200px" style="object-fit: contain;">
+                <hr style="border-color: grey;">
+                <a href="{% url 'product_details' name item.name %}" style="text-decoration:none;">
+                <div class="card-body">
+                    <h6 class="card-title text-primary">{{item.name}}</h6>
+                    <p class="card-text mt-4">
+                        <span class="float-start" style="color: red;"><s>{{item.original_price | stringformat:'d'}}</s></span>
+                        <span class="float-end" style="background-color: green;color: white; padding: 3px; border-radius: 5px;">{{item.selling_price | stringformat:'d'}}</span>
+                    </p>
+                </div>
+                </a>
+            </div>
+            </div>
+        </div>
+    {% endfor %}
+        
+    </div>
+  </div>
+</section>
+ 
+{% endblock content %}

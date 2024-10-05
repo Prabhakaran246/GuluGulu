@@ -1,0 +1,44 @@
+{% extends 'shop/layouts/main.html'%}
+
+{% load static %}
+
+{%block title%}
+GuluGulu | Online Shopping
+{%endblock title%}
+
+
+{% block content %}
+{% include 'shop/inc/messages.html'%}
+
+{% include 'shop/inc/slider.html'%}
+
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-12 my-4">
+                <h2>Latest <i class="fa-solid fa-fire text-danger"></i></h2>
+                <hr style="border-color: grey;">
+           </div>
+           {% for item in products %}
+            <div class="col-lg-3 col-sm-6 col-md-4">
+            <div class="card my-2" id="card" style="height: 320px;">
+                <img src="{{item.product_image.url}}" class="card-image-top m-2 d-flex" alt="categories" height="150px" style="object-fit: contain;">
+                <hr style="border-color: grey;">
+                <a href="{% url 'product_details' item.category.name item.name %}" style="text-decoration:none;">
+                <div class="card-body">
+                    <h6 class="card-text text-primary">{{item.name}}</h6>
+                    <p class="card-text mt-2">
+                        <span class="float-start" style="color: red;"><s>{{item.original_price | stringformat:'d'}}</s></span>
+                        <span class="float-end" style="background-color: green;color: white; padding: 3px; border-radius: 5px;">{{item.selling_price | stringformat:'d'}}</span>
+                    </p>
+                </div>
+                </a>
+            </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+    
+
+{% endblock content %}

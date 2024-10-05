@@ -1,0 +1,49 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+
+{%block title%}
+GuluGulu | Collections
+{%endblock title%}
+
+{% block content %}
+ <section id="Collections-top" class="mt-5">
+    <div class="row">
+        <div class="col-12 text-center mx-auto mb-3">
+            <h3>Best Sellers</h3>
+            <p>Our most popular products based on sales. Updated hourly.</p>
+            <p>
+                <a href="#" class="btn btn-primary">Already User</a>
+                <a href="#" class="btn btn-secondary">Register</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light">
+    <div class="container">
+    <div class="row">
+        <div class="col-12 p-3 my-3">
+             <h4>Categories</h4>
+             <hr style="border-color: grey;">
+        </div>
+        
+        {% for item in category %}
+        <div class="col-lg-3 col-sm-6 col-md-4">
+            <div class="card my-3" id="card" style="height: 400px;">
+                <img src="{{item.image.url}}" class="card-image-top m-2 d-flex" alt="categories" height="200px" style="object-fit: contain;">
+                <hr style="border-color: grey;">
+                <a href="{% url 'collections' item.name %}" style="text-decoration:none;">
+                <div class="card-body">
+                    <h6 class="card-title text-primary">{{item.name}}</h6>
+                    <p class="card-text">{{item.description}}</p>
+                </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+  </div>
+</section>
+ 
+{% endblock content %}

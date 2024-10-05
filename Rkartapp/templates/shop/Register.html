@@ -1,0 +1,57 @@
+{% extends 'shop/layouts/main.html'%}
+{% load static %}
+
+{%block title%}
+GuluGulu | Register
+{%endblock title%}
+
+{% block content %}
+<div class="container">
+<div class="row">
+    
+    <div class="col-4 mt-5 ms-auto">
+        <div class="col-12 text-success"><h3>Registration</h3></div>
+        <hr>
+        {% include 'shop/inc/messages.html'%}
+        <form action="#" method="post">
+            {% csrf_token %}
+           <div class="mb-4"> 
+            <label for="">Username</label><br>
+            {{form.username}}
+            </div>
+           <div class="mb-4"><label for="">Email</label><br>{{form.email}}
+            </div>
+            <div class="mb-4"><label for="">Password</label><br>{{form.password1}}
+                
+            </div>
+            <div class="mb-4"><label for="">Confirm Password</label><br>{{form.password2}}
+                
+            </div>
+            <div class="mb-4"><button type="submit" class="btn btn-primary">Register</button></div>
+            <div class="mb-4"><p>Already User? <a href="{% url 'login' %}" style="text-decoration: none;">Login Now</a></p></div>
+        </form>
+    </div>
+    <div class="col-4 me-auto text-danger" style="margin-top: 150px;">
+            {% if form.errors.username %}
+            <label for="">{{form.errors.username}}</label>
+            {% endif %}
+
+            {% if form.errors.email %}
+            <label for="">{{form.errors.email}}</label>
+            {% endif %}
+
+            {% if form.errors.password1 %}
+                <label for="">{{form.errors.password1}}</label>
+            {% endif %}
+
+            {% if form.errors.password2 %}
+                <label for="">{{form.errors.password2}}</label>
+            {% endif %}
+    </div>
+</div>
+</div>
+
+
+
+
+{% endblock content %}
