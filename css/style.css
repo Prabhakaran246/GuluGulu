@@ -1,0 +1,6 @@
+#carousel-inner{
+    object-position: 100% 40%;
+        height: 60vh;
+        object-fit: cover;
+        overflow: hidden;
+}
